@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+form {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: -1rem;
+}
+
+.logo img{
+    height: 70px;
+    margin-right: 5px;
+}
+
+.logo h2{
+    color: #1a2c3d;
+    font-size: 32px;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 1;
+}
+
+.login h2{
+    margin-top: 130px;
+    font-size: 34px;
+    justify-content: center;
+    color: #726fc1;
+}
+
+a{
+    display: flex;
+    align-items: center;
+    flex-direction: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+button {
+    margin-top: 15px;
+    background-color: #8E8CD8;
+    color: white;
+    font-size: 25px;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #726fc1;
+}
+
+.cadastro {
+    margin-top: 1rem;
+    border: 2px solid #8E8CD8;
+    color: #8E8CD8;
+    background: transparent;
+    border-radius: 8px;
+}
+
+.cadastro:hover {
+    opacity: 0.9;
+}
+

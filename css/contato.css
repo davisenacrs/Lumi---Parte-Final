@@ -1,0 +1,27 @@
+/* Wrapper da página */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilo do formulário de contato */
+form {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+textarea {
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 10px;
+    width: 100%;
+}

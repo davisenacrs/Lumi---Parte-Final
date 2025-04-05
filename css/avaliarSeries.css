@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #e7eff6;
+}
+
+h2 {
+    margin: 40px auto;
+    color: #2a4d69;
+    text-align: center;
+    font-size: 30px;
+}
+
+.img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: center;
+    margin-left: 8rem;
+}
+
+.avaliarseries img {
+    height: 400px;
+    width: auto;
+}
+
+.avaliarseries .descricao,
+.avaliarseries .lancamento {
+    font-size: 20px;
+}
+
+.avaliarseries {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h3 {
+    margin: 40px auto 20px;
+    color: #2a4d69;
+    text-align: center;
+    font-size: 25px;
+}
+
+.avaliarSeries {
+    background-color: #e7eff6;
+}
+
+.avaliarSeries a {
+    color: #2a4d69;
+}
+
+body {
+    background-color: #e7eff6;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+form {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+label[for="comentario"],
+#comentario {
+    font-family: "Poppins", sans-serif;
+    color: #2a4d69;
+    font-size: 23px;
+}
+
+#comentario {
+    font-size: 16px;
+    color: #333; 
+    background-color: #f5f8fc;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    resize: none;
+}
+
+label[for="nota"],
+#nota {
+    font-family: "Poppins", sans-serif;
+    color: #2a4d69;
+    font-size: 23px;
+}
+
+textarea {
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.mensagem-sucesso {
+    text-align: center;
+    font-size: 18px;
+    color: #1a2c3d;
+    background-color: #f0f9f0;
+    border: 1px solid #1a2c3d;
+    padding: 10px;
+    width: 50%;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #2a4d69;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    margin-top: 13%;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+    color: #c8e3fa;
+    font-size: 14px;
+}
+
+.media-nota {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 22px;
+    color: #1a2c3d;
+    background-color: #f0f9f0;
+    border: 1px solid #cce0cc;
+    padding: 15px;
+    border-radius: 10px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.avaliacoes-lista {
+    margin-top: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacao {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.avaliacao:last-child {
+    border-bottom: none;
+}
+
+.avaliacao strong {
+    color: #2a4d69;
+    font-size: 18px;
+}
+
+.avaliacao p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.sem-avaliacoes {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-top: 20px;
+}

@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body {
+    background-color: #e7eff6;
+}
+
+.home {
+    background-color: #e7eff6;
+}
+
+.home a {
+    color: #2a4d69;
+}
+
+h2 {
+    text-align: center;
+    color: #1a2c3d;
+    font-size: 28px;
+}
+
+h3 a{
+    text-align: center;
+    color: #1a2c3d;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.carousel {
+    position: relative;
+    width: 80%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.carousel-items {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+    pointer-events: none; /* Impede a interação com a rolagem */
+}
+
+.carousel-item {
+    flex: 0 0 100%; /* Cada item ocupa 100% da largura visível */
+    text-align: center;
+    background-color: #e7eff6;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item img {
+    width: 80%; /* Ajuste o tamanho das imagens */
+    max-width: 300px; /* Evita que as imagens fiquem muito grandes */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-bottom: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.carousel-item span {
+    display: block;
+    font-size: 1.2rem; /* Tamanho da fonte */
+    font-weight: bold;
+    color: #333; /* Cor do texto */
+}
+
+.prev-button, .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: auto; /* Permite a interação com as setas */
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        flex-direction: column;
+    }
+
+    .logo {
+        width: 100%;
+        padding: 15px;
+    }
+
+    body {
+        padding: 5px;
+    }
+}
+

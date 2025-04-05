@@ -1,0 +1,36 @@
+/* Wrapper da página */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Conteúdo de séries */
+h2 {
+    margin: 40px auto;
+    color: #1a2c3d;
+    text-align: center;
+    font-size: 30px;
+}
+
+.avaliar{
+    background-color: #c5d6e9;
+}
+
+.avaliar a{
+    color: #1a2c3d;
+}
+
+
+body {
+    background-color: #c5d6e9;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}

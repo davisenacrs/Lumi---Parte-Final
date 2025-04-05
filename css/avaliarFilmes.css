@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Wrapper da página */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #d3e3f5;
+}
+
+h2 {
+    margin: 40px auto;
+    color: #2a4d69;
+    text-align: center;
+    font-size: 26px;
+}
+
+.img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: center;
+    margin-left: 8rem;
+}
+
+.avaliarfilmes img{
+    height: 400px;
+    width: auto;
+}
+
+.avaliarfilmes .descricao{
+    font-size: 20px;
+}
+
+.avaliarfilmes .lancamento{
+    font-size: 20px;
+}
+
+.avaliarfilmes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h3 {
+    margin: 40px auto;
+    color: #2a4d69;
+    text-align: center;
+    font-size: 25px;
+}
+
+.avaliarFilmes{
+    background-color: #d3e3f5;
+}
+
+.avaliarFilmes a{
+    color: #2a4d69;
+}
+
+
+body {
+    background-color: #e7eff6;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}
+form {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+label[for="comentario"], #comentario {
+    font-family: "Poppins", sans-serif;
+    color: #2a4d69;
+    font-size: 23px;
+}
+
+#comentario {
+    font-size: 16px;
+    color: #333; 
+    background-color: #e7eff6;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; 
+    resize: none;
+}
+
+label[for="nota"], #nota {
+    font-family: "Poppins", sans-serif;
+    color: #2a4d69;
+    font-size: 23px;
+}
+
+textarea {
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+footer {
+    background-color: #2a4d69;
+    color: #e7eff6;
+    text-align: center;
+    padding: 20px 0; /* Remove position: fixed para evitar que o footer cubra o conteúdo */
+    position: relative;
+    margin-top: 14%; /* Faz o rodapé ficar no fim da página, mas apenas quando necessário */
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+    color: #c8e3fa;
+    font-size: 14px;
+}
