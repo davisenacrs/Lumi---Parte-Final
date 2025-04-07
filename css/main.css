@@ -40,30 +40,6 @@ button:hover {
     background-color: #726fc1;
 }
 
-.logout {
-    margin-left: auto;
-    height: 40%; /* Garante que o botão logout ocupe a altura total da nav */
-    display: flex; /* Para centralizar o botão dentro do li */
-    align-items: center; /* Centraliza o botão verticalmente */
-}
-.logout a.btn-logout {
-    padding: 0 20px; /* Remove o padding vertical e ajusta o padding horizontal */
-    background-color: #ff4d4d;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: transform 0.35s ease-in-out;
-    transform: scale(1);
-    height: 100%; /* Garante que o link logout ocupe toda a altura da nav */
-    display: flex; /* Para centralizar o conteúdo dentro do link */
-    align-items: center; /* Centraliza verticalmente o texto dentro do botão */
-}
-
-.logout a.btn-logout:hover {
-    background-color: #d32f2f;
-    transform: scale(1.15);
-}
-
 .error-message {
     color: #ff4d4d; /* Cor do texto vermelha */
     background-color: #ffe6e6; /* Fundo leve para destacar */

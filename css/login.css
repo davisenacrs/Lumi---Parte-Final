@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 form {
-    margin-top: 20px;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -76,6 +75,10 @@ button {
 
 button:hover {
     background-color: #726fc1;
+}
+
+.login {
+    margin-top: -55px;
 }
 
 .cadastro {

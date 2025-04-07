@@ -1,142 +1,3 @@
-/*
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/*
--
-.container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 60px;
-   
-}
-
-.logo {
-    text-align: center;
-    padding: 20px;
-    width: 40%;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 10px;
-    background-color: #ADCBE3;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.35s ease-in-out;
-    transform: scale(1);
-}
-
-.logo:hover {
-    transform: scale(1.15);
-} */
-
-/* Ajuste do contêiner principal
-.container .logo {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 80px; /* Aumentei o padding para o dobro
-    width: 100%; /* Agora ocupa toda a largura da tela
-    max-width: 2000px; /* Aumentei o limite máximo para 2000px
-}
-
-/* Ajuste da logo
-.logoH {
-    text-align: center;
-    padding: 80px; /* Dobrei o padding para dar ainda mais espaço interno
-    max-width: 100%; /* A logo ocupa toda a largura da tela
-    max-height: 95vh; /* A logo ocupa até 95% da altura da tela
-    margin-top: 60px; /* Aumentei o espaçamento superior
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 16px; /* Aumentei o border-radius para ajustar ao novo tamanho
-    background-color: #ADCBE3;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Aumentei a sombra para combinar com o tamanho maior
-    transition: transform 0.35s ease-in-out;
-    transform: scale(1);
-    overflow: hidden; /* Garante que o conteúdo da logo não ultrapasse os limites
-    cursor: pointer;
-}
-
-/* Ajuste da imagem da logo
-.logo img {
-    width: 100%; /* A imagem ocupa toda a largura do contêiner da logo
-    height: auto; /* Mantém a proporção correta da imagem
-    object-fit: cover; /* Corta a imagem uniformemente se necessário
-}
-
-/* Efeito hover permanece o mesmo
-.logo:hover {
-    transform: scale(1.15);
-    cursor: pointer;
-}
-
-.container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 60px;
-   
-}
-
-#conteudo-oculto {
-    background-color: #E3F2FD;
-    color: #333;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-    font-size: 30px;
-    line-height: 1.6;
-    max-width: 80%;
-    margin: 20px auto;
-    transition: background-color 0.3s ease-in-out;
-}
-
-#conteudo-oculto:hover {
-    background-color: #D4E4F4; /* Fundo levemente mais escuro no hover
-}
-
-#conteudo-oculto h2 {
-    color: #2962FF;
-    margin-bottom: 10px;
-}
-
-#conteudo-oculto p {
-    margin-bottom: 15px;
-    text-align: justify;
-}
-
-
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-        flex-direction: column;
-    }
-
-    .logo {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .logo h2 {
-        font-size: 20px;
-    }
-
-    body {
-        padding: 5px;
-    }
-}
-*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
@@ -148,14 +9,13 @@ body {
 
 .swiper-slide {
     background-color: #E7EFF6 !important;
-    /* Se quiser bordas arredondadas também */
-    border-radius: 10px;
-    padding: 15px;
+    border-radius: 8px;
+    padding: 12px;
     box-sizing: border-box;
-    border: 3px solid #1A2C3D;
-    border-bottom: 10px solid #1A2C3D;
-    border-left: 8px solid #1A2C3D;
-  }
+    border: 2.4px solid #1A2C3D;
+    border-bottom: 8px solid #1A2C3D;
+    border-left: 6.4px solid #1A2C3D;
+}
 
 /* HEADER */
 .header {
@@ -165,7 +25,7 @@ body {
     align-items: center;
     background-color: #1A2C3D;
     color: #E7EFF6;
-    padding: 15px 30px;
+    padding: 12px 24px;
     flex-wrap: wrap;
     margin-bottom: 0;
 }
@@ -173,16 +33,16 @@ body {
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 0;
 }
 
 .logo-area img {
-    width: 50px;
+    width: 40px;
 }
 
 .logo-text {
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 600;
     color: #E7EFF6;
     text-align: center;
@@ -190,19 +50,19 @@ body {
 
 .menu ul {
     display: flex;
-    gap: 40px;
+    gap: 32px;
     list-style: none;
     padding: 0;
     margin: 0;
     margin-bottom: 0;
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .menu a {
     color: #E7EFF6;
     text-decoration: #2a4d69;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 17.6px;
 }
 
 .menu a:hover {
@@ -210,12 +70,12 @@ body {
 }
 
 .botoes-header a {
-    margin-left: 10px;
-    padding: 10px 15px;
+    margin-left: 8px;
+    padding: 8px 12px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 6.4px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .btn-login {
@@ -224,7 +84,7 @@ body {
 }
 
 .btn-cadastro {
-    border: 2px solid #E7EFF6;
+    border: 1.6px solid #E7EFF6;
     color: #E7EFF6;
     background: transparent;
 }
@@ -234,14 +94,32 @@ body {
     opacity: 0.9;
 }
 
-/* HERO */
+/* Estilo aplicado ao botão de logout mesmo fora do <li class="logout"> */
+.btn-logout {
+    background-color: #ff4d4d;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    padding: 8px 16px;
+    font-size: 16px;
+    transition: transform 0.35s ease-in-out, background-color 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #d32f2f;
+    transform: scale(1.15);
+}
+
+
+/* HERO (mantido como era antes) */
 .intro {
     background-image: url('../img/img_intro.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
-    height: 75vh; /* deixa ocupar toda a tela visível */
+    height: 75vh;
     display: flex;
     align-items: flex;
     justify-content: center;
@@ -254,7 +132,6 @@ body {
     mask-image:
     linear-gradient(to right, transparent 100%, black 0%, black 0%, transparent 100%),
     linear-gradient(to bottom, black 85%, transparent 100%);
-
 }
 
 .conteudo-intro {
@@ -263,8 +140,9 @@ body {
 }
 
 .intro h1 {
+    margin-top: 5px;
     font-size: 70px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .intro p {
@@ -289,45 +167,49 @@ body {
     background-color: #726fc1;
 }
 
-.carousel h2 {
-    text-align: center;
-    margin-left: 155px;
-    text-align: left;
-    font-size: 45px;
-}
-
-.pub1{
+.pub1 {
     color: #E7EFF6;
+    font-size: 45px;
+    margin-bottom: -15px;
 }
 
-.pub2{
-    color: #1A2C3D
+.pub2 {
+    color: #1A2C3D;
+    font-size: 45px;
+    margin-bottom: -15px;
+
 }
 
-h3 a{
+h3 a {
     text-align: center;
     color: #1a2c3d;
-    font-size: 22px;
+    font-size: 18px;
     text-decoration: none;
-    
 }
 
-.carrousel1{
+.carrousel1 {
     background-color: #1a2c3d;
-    padding: 20px;
+    padding: 16px;
+}
+
+.carousel h2 {
+    text-align: center;
+    margin-left: 124px;
+    text-align: left;
+    font-size: 36px;
 }
 
 /* DESTAQUE */
 .destaque {
-    padding: 60px 20px;
+    padding: 48px 16px;
     text-align: center;
     background-color: #E7EFF6;
 }
 
 .destaque h2 {
-    font-size: 65px;
-    margin-left: 120px;
-    margin-top: -3rem;
+    font-size: 52px;
+    margin-left: 96px;
+    margin-top: -1rem;
     text-align: left;
     color: #1a2c3d;
 }
@@ -339,55 +221,75 @@ h3 a{
 .cards-simples {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
-    width: 1400px;
-    height: 220px;
+    gap: 16px;
+    width: 1120px;
+    height: 176px;
     margin: 0 auto;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .caixa-texto {
     background-color: white;
-    padding: 25px;
-    border: 2px solid #8E8CD8;
-    border-radius: 8px;
+    padding: 20px;
+    border: 1.6px solid #8E8CD8;
+    border-radius: 6.4px;
     font-weight: 500;
     line-height: 1.5;
-    font-size: 30px;
+    font-size: 22px;
 }
 
-footer{
+footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: 30px;
+    gap: 0.8rem;
+    padding: 24px;
 }
 
-.btnlogin{
+.btnlogin {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
-    margin-top: 3rem;
+    margin-bottom: 0.8rem;
+    margin-top: 2.4rem;
 }
 
-.direitos{
-    border-radius: 8px;
-    border: 2px solid #1A2C3D;
-    padding: 10px;
-    width: 300px;
-    height: 70px;
+.direitos {
+    border-radius: 6.4px;
+    border: 1.6px solid #1A2C3D;
+    padding: 8px;
+    width: 240px;
+    height: 56px;
     font-size: 15px;
     text-align: center;
 }
 
-.redes{
-    border-radius: 8px;
-    border: 2px solid #1A2C3D;
-    padding: 10px;
-    height: 70px;
-    width: 300px;
+.redes {
+    border-radius: 6.4px;
+    border: 1.6px solid #1A2C3D;
+    padding: 8px;
+    height: 56px;
+    width: 240px;
     font-size: 15px;
     text-align: center;
+}
+
+.avaliacao-media {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.nota {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1A2C3D;
+}
+
+.estrela-icon {
+    width: 22px;
+    height: 22px;
 }

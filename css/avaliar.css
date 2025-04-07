@@ -1,36 +1,292 @@
-/* Wrapper da página */
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Conteúdo de séries */
-h2 {
-    margin: 40px auto;
-    color: #1a2c3d;
-    text-align: center;
-    font-size: 30px;
-}
-
-.avaliar{
-    background-color: #c5d6e9;
-}
-
-.avaliar a{
-    color: #1a2c3d;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 body {
-    background-color: #c5d6e9;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #E7EFF6;
+    color: #1A2C3D;
 }
 
-.container {
-    flex-grow: 1;
+/* HEADER */
+header, .header {
+    display: flex;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A2C3D;
+    color: #E7EFF6;
+    padding: 12px 24px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.logo-area img {
+    width: 40px;
+}
+
+.logo-text {
+    font-size: 32px;
+    font-weight: 600;
+    color: #E7EFF6;
+    text-align: center;
+}
+
+.menu ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0;
+    margin-left: 8px;
+}
+
+.menu a {
+    color: #E7EFF6;
+    text-decoration: #2a4d69;
+    font-weight: 500;
+    font-size: 17.6px;
+}
+
+.menu a:hover {
+    text-decoration: #111;
+}
+
+.botoes-header a {
+    margin-left: 8px;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 6.4px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.botoes-header .btn-login {
+    background-color: #8E8CD8;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6.4px;
+    font-weight: bold;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+/* CONTEÚDO */
+.img {
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 32px 16px;
+}
+
+.avaliarfilmes,
+.avaliarseries {
+    max-width: 480px;
+    margin-right: 400px;
+    margin-bottom: -72px;
+}
+
+.avaliarfilmes h2,
+.avaliarseries h2 {
+    font-size: 28px;
+    text-align: left;
+}
+
+.poster {
+    height: 280px;
+    border-radius: 9.6px;
+    box-shadow: 0 3.2px 9.6px rgba(0,0,0,0.1);
+    margin-top: -60px;
+}
+
+.descricao,
+.lancamento {
+    margin-left: 5.6px;
+    font-size: 17.6px;
+    color: #2a4d69;
+    margin-bottom: 8px;
+}
+
+/* FORMULÁRIO */
+form {
+    margin-top: 4%;
+    background-color: white;
     padding: 20px;
-    
+    border-radius: 8px;
+    box-shadow: 0 3.2px 9.6px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    width: 64%;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    color: #1A2C3D;
+    font-size: 20px;
+}
+
+textarea {
+    width: 76.8%;
+    height: 80px;
+    padding: 8px;
+    border-radius: 4.8px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    background-color: #f5f8fc;
+    color: #2a4d69;
+    resize: none;
+}
+
+/* ESTRELAS */
+.estrelas {
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.estrelas label {
+    cursor: pointer;
+    font-size: 27.2px;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s;
+}
+
+.estrelas input[type="radio"] {
+    display: none;
+}
+
+.estrelas input[type="radio"]:checked ~ label,
+.estrelas label:hover,
+.estrelas label:hover ~ label {
+    color: #FFD700;
+}
+
+.estrelas span {
+    font-size: 24px;
+    color: #1A2C3D;
+    font-weight: 500;
+}
+
+button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+    background-color: #8E8CD8;
+    color: white;
+    font-size: 16px;
+    padding: 9.6px;
+    border-radius: 6.4px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #726fc1;
+}
+
+/* MENSAGENS */
+.error-message,
+.accuracy-message,
+.mensagem-sucesso {
+    text-align: center;
+    font-size: 14.4px;
+    margin: 16px auto;
+    width: 40%;
+    border-radius: 6.4px;
+    padding: 8px;
+}
+
+.error-message {
+    background-color: #ffe6e6;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+}
+
+.accuracy-message,
+.mensagem-sucesso {
+    background-color: #f0f9f0;
+    border: 1px solid #1a2c3d;
+    color: #1a2c3d;
+}
+
+/* MÉDIA DE AVALIAÇÃO */
+.media-avaliacao,
+.media-nota {
+    margin-top: 24px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 17.6px;
+    color: #1a2c3d;
+    background-color: #E7EFF6;
+    border: 1px solid #8E8CD8;
+    padding: 12px;
+    border-radius: 8px;
+    width: 48%;
+    margin-left: 89.6%;
+}
+
+.media-avaliacao strong {
+    font-size: 19.2px;
+    color: #FFD700;
+    margin-left: 6.4px;
+}
+
+/* LISTA DE AVALIAÇÕES */
+.avaliacoes-lista {
+    margin-top: 24px;
+    background-color: #ffffff;
+    border-radius: 6.4px;
+    padding: 16px;
+    width: 64%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacao {
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+}
+
+.avaliacao:last-child {
+    border-bottom: none;
+}
+
+.avaliacao strong {
+    color: #2a4d69;
+    font-size: 14.4px;
+}
+
+.avaliacao p {
+    margin: 4px 0;
+    color: #333;
+}
+
+.sem-avaliacoes {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-top: 16px;
+}
+
+footer {
+    margin-top: 200px;
 }

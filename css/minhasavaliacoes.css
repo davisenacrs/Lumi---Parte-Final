@@ -1,79 +1,92 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #e7eff6;
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #E7EFF6;
+    color: #1A2C3D;
 }
 
-/* Conteúdo principal */
-.container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+/* Estilo principal da seção de avaliações */
+.avaliacoes-lista {
+    max-width: 720px;
+    margin: 48px auto;
+    padding: 24px;
+    background-color: white;
+    border-radius: 9.6px;
+    box-shadow: 0 4.8px 12.8px rgba(0, 0, 0, 0.08);
 }
 
-.avaliacao{
-    background-color: #e7eff6;
+.avaliacoes-lista h2 {
+    text-align: center;
+    font-size: 27.2px;
+    margin-bottom: 24px;
+    color: #726fc1;
 }
 
-.avaliacao a{
+/* Estilo de cada avaliação */
+.avaliacao {
+    background-color: #f7faff;
+    border: 0.8px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.3s;
+}
+
+.avaliacao:hover {
+    box-shadow: 0 0 8px rgba(142, 140, 216, 0.3);
+}
+
+.avaliacao h3 {
+    margin: 0 0 8px;
+    font-size: 19.2px;
+    color: #1A2C3D;
+}
+
+.avaliacao p {
+    margin: 4.8px 0;
+    font-size: 14.4px;
     color: #2a4d69;
 }
 
-
-.avaliacoes-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    width: 100%;
-    margin: 20px auto;
+.avaliacao strong {
+    color: #8E8CD8;
 }
 
-.avaliacoes-container h2 {
-    color: #1a2c3d;
-    font-size: 24px;
-    margin-top: 0;
+/* Caso o usuário não tenha avaliações */
+.sem-avaliacoes {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+    margin-top: 24px;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 24px;
+}
+
+.direitos {
+    border-radius: 6.4px;
+    border: 1.6px solid #1A2C3D;
+    padding: 8px;
+    width: 240px;
+    height: 56px;
+    font-size: 15px;
     text-align: center;
 }
 
-.avaliacao-item {
-    border-bottom: 1px solid #e7eff6;
-    padding: 15px 0;
-}
-
-.avaliacao-item:last-child {
-    border-bottom: none; 
-}
-
-.avaliacao-item p {
-    color: #e7eff6;
-    font-size: 18px;
-    margin: 5px 0;
-}
-
-.avaliacao-item .avaliador {
-    font-weight: bold;
-    color: #1a2c3d;
-}
-
-.avaliacao-item .nota,
-.avaliacao-item .comentario {
-    color: #1a2c3d;
-}
-
-h5 {
-    margin: 40px auto;
-    color: #1a2c3d;
+.redes {
+    border-radius: 6.4px;
+    border: 1.6px solid #1A2C3D;
+    padding: 8px;
+    height: 56px;
+    width: 240px;
+    font-size: 15px;
     text-align: center;
-    font-size: 30px;
-}
-
-.avaliar a {
-    color: #1a2c3d;
 }
