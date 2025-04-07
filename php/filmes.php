@@ -40,9 +40,8 @@ if (!isset($_SESSION['usuario_id'])) {
             </ul>
         </nav>
         <div class="botoes-header">
-            <li class="logout"><a href="logout.php" class="btn-logout">Sair</a></li>
-            <?php if (isset($_SESSION['user_id'])): ?> 
-                <li class="logout"><a href="logout.php" class="btn-logout">Sair</a></li>
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+                <a href="logout.php" class="btn-logout">Sair</a>
             <?php endif; ?>
         </div>
     </header>
@@ -61,7 +60,7 @@ if ($stmt->rowCount() > 0) {
     $counter = 0; // Contador para controlar as quebras de linha
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // Verifica se já é o 3º filme e adiciona a quebra de linha
-        if ($counter > 0 && $counter % 3 == 0) {
+        if ($counter > 0 && $counter % 2 == 0) {
             echo "</div><div class='filmes-container'>"; // Fecha e reabre o contêiner a cada 3 filmes
         }
 

@@ -40,9 +40,8 @@ if (!isset($_SESSION['usuario_id'])) {
             </ul>
         </nav>
         <div class="botoes-header">
-            <li class="logout"><a href="logout.php" class="btn-logout">Sair</a></li>
-            <?php if (isset($_SESSION['user_id'])): ?> 
-                <li class="logout"><a href="logout.php" class="btn-logout">Sair</a></li>
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+                <a href="logout.php" class="btn-logout">Sair</a>
             <?php endif; ?>
         </div>
     </header>
