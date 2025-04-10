@@ -45,40 +45,69 @@ if (!isset($_SESSION['usuario_id'])) {
             <?php endif; ?>
         </div>
     </header>
-
-    <h2>Filmes em destaque:</h2>
+    
+    <div class="titulo-pag">
+        <h2>Filmes em destaque:</h2>
+    </div>
 
     
     <div class="filmes-container">
-<?php
-include 'db.php';
+    <?php
+    include 'db.php';
 
-$sql = "SELECT id, titulo, descricao, data_lancamento, poster FROM filmes";
-$stmt = $pdo->query($sql);
+    // Função para obter nota média
+    function getNotaMedia($pdo, $id_obra) {
+        $stmt = $pdo->prepare("SELECT ROUND(AVG(avaliacao), 1) AS media FROM avaliacoes WHERE filmes_id = ?");
+        $stmt->execute([$id_obra]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['media'] ?? '0.0';
+    }
 
+    // Consulta
+    $sql = "SELECT id, titulo, descricao, data_lancamento, poster FROM filmes";
+    $stmt = $pdo->query($sql);
+
+    // Loop
 if ($stmt->rowCount() > 0) {
-    $counter = 0; // Contador para controlar as quebras de linha
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        // Verifica se já é o 3º filme e adiciona a quebra de linha
-        if ($counter > 0 && $counter % 2 == 0) {
-            echo "</div><div class='filmes-container'>"; // Fecha e reabre o contêiner a cada 3 filmes
-        }
+        $media = getNotaMedia($pdo, $row["id"]);
 
         echo "<div class='filme-item'>";
         echo "<img src='../img/" . $row["poster"] . "' alt='Poster de " . $row["titulo"] . "' class='poster'>";
         echo "<h3>" . $row["titulo"] . "</h3>";
-        // echo "<p>" . $row["descricao"] . "</p>";
-        echo "<p><strong>Data de Lançamento:</strong> " . date("d/m/Y", strtotime($row["data_lancamento"])) . "</p>";
-        echo "<a href='avaliarFilmes.php?id=" . $row["id"] . "'>Adicione uma avaliação</a>";
+
+        // Linha com data à esquerda e nota à direita
+        echo "<div class='top-info'>";
+
+        // Data à esquerda
+        echo "<div class='data-lancamento'>";
+        echo "<strong>Data:</strong> " . date("d/m/Y", strtotime($row["data_lancamento"]));
         echo "</div>";
 
-        $counter++; // Incrementa o contador
+        // Nota à direita
+        echo "<div class='avaliacao-media'>";
+        echo "<span class='nota'>{$media}</span>";
+        echo "<img src='../img/estrela.png' alt='Estrela' class='estrela-icon'>";
+        echo "</div>";
+
+        echo "</div>"; // fecha top-info
+
+        // Botão centralizado abaixo
+        echo "<div class='avaliar-btn'>";
+        echo "<a href='avaliarFilmes.php?id=" . $row["id"] . "' class='avaliar-btn'>Adicione uma avaliação</a>";
+        echo "</div>";
+
+        echo "</div>"; // fecha .filme-item
+
     }
-} else {
-    echo "<p>Nenhum filme encontrado.</p>";
-}
+}else {
+        echo "<p>Nenhuma série encontrada.</p>";
+    }
 ?>
+
+
 </div>
+
 
 <button class="btn-topo" id="btnTopo" title="Voltar ao topo">↑</button>
     <footer>

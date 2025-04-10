@@ -7,12 +7,20 @@
 }
 
 /* Conteúdo de séries */
+.titulo-pag{
+    background-color: #e7eff6;
+    margin-bottom: 40px;
+}
+
 h2 {
+    display: flex;
+    justify-content: center;
     margin: 40px auto;
     color: #1a2c3d;
     text-align: center;
     font-size: 50px;
     margin-bottom: 3%;
+
 }
 
 .series{
@@ -25,29 +33,132 @@ h2 {
 
 
 body {
-    background-color: #e7eff6;
+    background-color: #1a2c3d;
 }
 
-.container {
-    flex-grow: 1;
+.series-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    
+    gap: 20px; /* Espaço entre os cards */
+    padding: 0 20px;
+    max-width: 100%;
+    margin-left: 5.8rem;
 }
 
-.serie-item a{
-    text-decoration: none;
-    font-size: 1rem;
+.serie-item {
+    background: #e7eff6;
+    border: 5px solid #8E8CD8;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: calc(25% - 20px); /* 3 por linha com espaçamento */
+    max-width: 400px;
+    height: 470px;
+}
+
+.serie-item img{
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.avaliacao-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.avaliar-btn {
+    font-size: 0.9rem;
+    margin-top: 1rem;
     color: #e7eff6;
-    transition: color 0s ease, transform 0.3s ease;
-    background-color: #1a2c3d;
-    padding: 10px;
+    background-color: #8E8CD8;
+    padding: 8px 12px;
     border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.avaliar-btn:hover {
+    transform: scale(1.05);
+}
+
+.serie-item h3 {
+    margin-top: 10px;
+    color: #8E8CD8;
+    font-size: 1.3rem;
+    height: 50px;
 }
 
 .serie-item a:hover {
     transform: scale(1.05); 
 }
 
+.top-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 4px;
+}
+
+.data-lancamento {
+    font-size: 1.1rem;
+    color: #1A2C3D;
+    font-weight: 500;
+}
+
+.avaliacao-media {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nota {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1A2C3D;
+}
+
+
+.serie-item .avaliacao-media .estrela-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e7eff6;
+    gap: 0.8rem;
+    padding: 24px;
+}
+
+.direitos {
+    border-radius: 6.4px;
+    border: 3px solid #8E8CD8;
+    background-color: #e7eff6;
+    padding: 8px;
+    width: 240px;
+    height: 56px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.redes {
+    border-radius: 6.4px;
+    border: 3px solid #8E8CD8;
+    background-color: #e7eff6;
+    padding: 8px;
+    height: 56px;
+    width: 240px;
+    font-size: 15px;
+    text-align: center;
+}

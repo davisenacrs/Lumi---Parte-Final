@@ -46,39 +46,63 @@ if (!isset($_SESSION['usuario_id'])) {
         </div>
     </header>
 
-    <h2>Séries em destaque:</h2>
+    <div class="titulo-pag">
+        <h2>Séries em destaque:</h2>
+    </div>
     
     <div class="series-container">
     <?php
-    include 'db.php'; // Inclui a conexão com o banco
+include 'db.php'; // Inclui a conexão com o banco
 
-    // Consulta para obter as séries usando PDO
-    $sql = "SELECT id, titulo, descricao, data_lancamento, poster FROM series";
-    $stmt = $pdo->query($sql);
+// Função para obter a nota média das séries
+function getNotaMedia($pdo, $id_obra) {
+    $stmt = $pdo->prepare("SELECT ROUND(AVG(avaliacao), 1) AS media FROM avaliacoes WHERE series_id = ?");
+    $stmt->execute([$id_obra]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['media'] ?? '0.0';
+}
 
-    // Verifica se há resultados e os exibe
-    if ($stmt->rowCount() > 0) {
-        $counter = 0; // Contador para controlar as quebras de linha
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // Verifica se já é o 3º item e insere a quebra de linha
-            if ($counter > 0 && $counter % 3 == 0) {
-                echo "</div><div class='series-container'>"; // Fecha e reabre o contêiner a cada 3 séries
-            }
+// Consulta para obter as séries usando PDO
+$sql = "SELECT id, titulo, descricao, data_lancamento, poster FROM series";
+$stmt = $pdo->query($sql);
 
-            echo "<div class='serie-item'>";
-            echo "<img src='../img/" . $row["poster"] . "' alt='Poster de " . $row["titulo"] . "' class='poster'>";
-            echo "<h3>" . $row["titulo"] . "</h3>";
-            echo "<p>" . $row["descricao"] . "</p>";
-            echo "<p><strong>Data de Lançamento:</strong> " . date("d/m/Y", strtotime($row["data_lancamento"])) . "</p>";
-            echo "<a href='avaliarSeries.php?id=" . $row["id"] . "'>Adicione uma avaliação</a>";
-            echo "</div>";
+// Verifica se há resultados e os exibe
+if ($stmt->rowCount() > 0) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $media = getNotaMedia($pdo, $row["id"]);
 
-            $counter++; // Incrementa o contador
-        }
-    } else {
-        echo "<p>Nenhuma série encontrada.</p>";
+        echo "<div class='serie-item'>";
+        echo "<img src='../img/" . $row["poster"] . "' alt='Poster de " . $row["titulo"] . "' class='poster'>";
+        echo "<h3>" . $row["titulo"] . "</h3>";
+
+        // Linha com data à esquerda e nota à direita
+        echo "<div class='top-info'>";
+
+        // Data à esquerda
+        echo "<div class='data-lancamento'>";
+        echo "<strong>Data:</strong> " . date("d/m/Y", strtotime($row["data_lancamento"]));
+        echo "</div>";
+
+        // Nota à direita
+        echo "<div class='avaliacao-media'>";
+        echo "<span class='nota'>{$media}</span>";
+        echo "<img src='../img/estrela.png' alt='Estrela' class='estrela-icon'>";
+        echo "</div>";
+
+        echo "</div>"; // fecha top-info
+
+        // Botão centralizado abaixo
+        echo "<div class='avaliar-btn'>";
+        echo "<a href='avaliarSeries.php?id=" . $row["id"] . "' class='avaliar-btn'>Adicione uma avaliação</a>";
+        echo "</div>";
+
+        echo "</div>"; // fecha .serie-item
     }
-    ?>
+} else {
+    echo "<p>Nenhuma série encontrada.</p>";
+}
+?>
+
 </div>
  
 <button class="btn-topo" id="btnTopo" title="Voltar ao topo">↑</button>
