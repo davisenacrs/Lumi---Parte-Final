@@ -97,50 +97,79 @@ header, .header {
 
 .avaliarfilmes h2,
 .avaliarseries h2 {
-    font-size: 32px;
+    font-size: 38px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.avaliarfilmes h3,
+.avaliarseries h3 {
+    font-size: 28px;
     text-align: left;
     margin-bottom: 20px;
 }
 
 .poster {
-    height: 280px;
-    border-radius: 9.6px;
-    box-shadow: 0 3.2px 9.6px rgba(0,0,0,0.1);
-    margin-top: 20px;
+    display: block;
+    width: 100%;
+    max-width: 960px;
+    height: 540px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 20px auto;
+    box-shadow: 0 0 15px #1a2c3d;
 }
 
 .descricao,
 .lancamento {
     margin-left: 5.6px;
-    font-size: 18px;
+    font-size: 20px;
     color: #2a4d69;
     margin-bottom: 8px;
 }
 
 /* FORMULÁRIO */
+
+.av {
+    background-color: #1A2C3D;
+    padding: 48px 0; /* espaço em cima e embaixo */
+    margin-top: 64px; /* separação visual do conteúdo anterior */
+}
+
+/* Layout em colunas */
+.av2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap; /* para adaptar em telas menores */
+}
+
 form {
-    margin: 32px auto;
+    margin-left: -230px;
+    margin-top: 1.5rem;
     background-color: white;
     padding: 28px;
     border-radius: 8px;
     box-shadow: 0 3.2px 9.6px rgba(0, 0, 0, 0.08);
-    max-width: 800px;
-    width: 100%;
+    width: 500px;
 }
 
 label {
-    display: block;
+    display: flex;
     font-weight: 500;
     margin-top: 12px;
     margin-bottom: 4px;
     color: #1A2C3D;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 textarea {
     width: 100%;
     height: 100px;
-    padding: 10px;
     border-radius: 4.8px;
     border: 1px solid #ccc;
     font-size: 14px;
@@ -228,49 +257,22 @@ button:hover {
     color: #1a2c3d;
 }
 
-/* MÉDIA DE AVALIAÇÃO */
-.titulo-e-media {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1000px;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.titulo-e-media h2 {
-    font-size: 32px;
-    margin: 0;
-}
-
-.media-avaliacao {
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1A2C3D;
-    gap: 8px;
-}
-
-.estrela-icon {
-    width: 28px;
-    height: 28px;
-}
-
 /* LISTA DE AVALIAÇÕES */
 .avaliacoes-lista {
     margin-top: 24px;
     background-color: #ffffff;
     border-radius: 6.4px;
     padding: 16px;
-    max-width: 800px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 800px;
+    margin-left: 20px;
+    margin-right: -230px;
     box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacoes-lista h3{
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
 }
 
 .avaliacao {
@@ -314,5 +316,5 @@ button:hover {
 }
 
 footer {
-    margin-top: 200px;
+    margin-top: 2.5rem;
 }

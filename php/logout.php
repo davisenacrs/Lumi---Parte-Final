@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/logout.css">
-    <link rel="stylesheet" href="../css/global.css">
     <title>Logout</title>
 </head>
 <body>

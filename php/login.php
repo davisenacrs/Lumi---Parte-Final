@@ -15,13 +15,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($user && password_verify($password, $user['senha'])) {
         $_SESSION['usuario_id'] = $user['id'];
-        header('Location: index.php');
+        $_SESSION['nome'] = $user['nome'];
+        $_SESSION['tipo'] = $user['tipo'];
+
+        if ($user['tipo'] === 'admin') {
+            header('Location: adm.php');
+        } else {
+            header('Location: index.php');
+        }
         exit;
     } else {
         $mensagemErro = 'Email ou senha incorretos.';
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">

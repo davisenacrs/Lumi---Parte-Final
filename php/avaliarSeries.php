@@ -33,13 +33,16 @@ $stmt_media->execute([$id_serie]);
 $media = $stmt_media->fetchColumn();
 
 // Busca trailer no YouTube
-$apiKey = 'AIzaSyAdr9XVnU0PieuYzACnV7LFxsz_jaHiYHk'; // <- Substitua aqui
+$apiKey = 'AIzaSyAdr9XVnU0PieuYzACnV7LFxsz_jaHiYHk';
 $tituloBusca = urlencode($serie['titulo'] . " trailer oficial");
-
 $urlYoutube = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$tituloBusca&type=video&maxResults=1&key=$apiKey";
 
-$response = file_get_contents($urlYoutube);
-$data = json_decode($response, true);
+$response = @file_get_contents($urlYoutube);
+$data = [];
+
+if ($response !== false) {
+    $data = json_decode($response, true);
+}
 
 $videoId = null;
 if (!empty($data['items'])) {
@@ -47,21 +50,26 @@ if (!empty($data['items'])) {
 }
 
 // Inserção da avaliação
+$mensagem = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $comentario = $_POST['comentario'];
-    $nota = $_POST['nota'];
+    if (isset($_POST['comentario']) && isset($_POST['nota'])) {
+        $comentario = $_POST['comentario'];
+        $nota = $_POST['nota'];
 
-    $sql_insert = "INSERT INTO avaliacoes (series_id, usuario_id, comentario, avaliacao) VALUES (?, ?, ?, ?)";
-    $stmt_insert = $pdo->prepare($sql_insert);
+        $sql_insert = "INSERT INTO avaliacoes (series_id, usuario_id, comentario, avaliacao) VALUES (?, ?, ?, ?)";
+        $stmt_insert = $pdo->prepare($sql_insert);
 
-    if ($stmt_insert->execute([$id_serie, $usuario_id, $comentario, $nota])) {
-        echo "<div class='accuracy-message'>Avaliação adicionada com sucesso!</div>";
+        if ($stmt_insert->execute([$id_serie, $usuario_id, $comentario, $nota])) {
+            $mensagem = "<div class='accuracy-message'>Avaliação adicionada com sucesso!</div>";
+        } else {
+            $mensagem = "<div class='error-message'>Erro ao adicionar a avaliação. Tente novamente.</div>";
+        }
     } else {
-        echo "<div class='error-message'>Erro ao adicionar a avaliação. Tente novamente.</div>";
+        $mensagem = "<div class='error-message'>Preencha todos os campos antes de enviar.</div>";
     }
 }
 
-// Consulta avaliações da série
+// Consulta avaliações
 $sql_avaliacoes = "
     SELECT u.nome, a.avaliacao, a.comentario
     FROM avaliacoes a
@@ -83,18 +91,6 @@ $avaliacoes = $stmt_avaliacoes->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/avaliar.css">
     <link rel="icon" type="image/png" href="../img/logo.png">
-    <style>
-        .trailer-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .trailer-container iframe {
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 0 15px #1a2c3d;
-        }
-    </style>
 </head>
 <body>
 
@@ -116,73 +112,76 @@ $avaliacoes = $stmt_avaliacoes->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </header>
 
-<div class="img">
-    <div class="avaliarfilmes">
-        <h2><?php echo htmlspecialchars($serie['titulo']); ?></h2>
+<div class="avaliarfilmes">
+    <h2><?php echo htmlspecialchars($serie['titulo']); ?></h2>
 
-        <?php if ($media): ?>
-            <div class="media-avaliacao">
-                <span>Média dos usuários:</span>
-                <strong><?php echo number_format($media, 1); ?> ★</strong>
-            </div>
-        <?php else: ?>
-            <div class="media-avaliacao">
-                <span>Esta série ainda não foi avaliada.</span>
-            </div>
-        <?php endif; ?>
-
-        <!-- Trailer do YouTube -->
-        <?php if ($videoId): ?>
-            <div class="trailer-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $videoId; ?>" 
-                        frameborder="0" allowfullscreen></iframe>
-            </div>
-                <?php else: ?>
-                    <img src="../img/<?php echo htmlspecialchars($serie['poster']); ?>" alt="Poster" class="poster">
-                <?php endif; ?>
-
-        <p class="descricao"><?php echo htmlspecialchars($serie['descricao']); ?></p>
-        <p class="lancamento"><strong>Data de Lançamento:</strong> <?php echo date("d/m/Y", strtotime($serie['data_lancamento'])); ?></p>
-    </div>
-
-    <form action="" method="POST">
-        <label for="comentario">Compartilhe conosco seu comentário:</label>
-        <textarea name="comentario" id="comentario" required></textarea>
-
-        <label for="nota">Essa obra merece qual avaliação?</label>
-        <div class="estrelas">
-            <input type="radio" name="nota" id="estrela5" value="5">
-            <label for="estrela5">★ <span>5</span></label>
-
-            <input type="radio" name="nota" id="estrela4" value="4">
-            <label for="estrela4">★ <span>4</span></label>
-
-            <input type="radio" name="nota" id="estrela3" value="3">
-            <label for="estrela3">★ <span>3</span></label>
-
-            <input type="radio" name="nota" id="estrela2" value="2">
-            <label for="estrela2">★ <span>2</span></label>
-
-            <input type="radio" name="nota" id="estrela1" value="1">
-            <label for="estrela1">★ <span>1</span></label>
+    <?php if ($media): ?>
+        <div class="media-avaliacao">
+            <h3>Média dos usuários: <?php echo number_format($media, 1); ?> ★</h3>
         </div>
+    <?php else: ?>
+        <div class="media-avaliacao">
+            <h3>Esta série ainda não foi avaliada.</h3>
+        </div>
+    <?php endif; ?>
 
-        <button type="submit">Enviar Avaliação</button>
-    </form>
+    <!-- Trailer ou Poster -->
+    <?php if ($videoId): ?>
+        <div class="trailer-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $videoId; ?>" frameborder="0" allowfullscreen></iframe>
+        </div>
+    <?php else: ?>
+        <img src="../img/<?php echo htmlspecialchars($serie['poster']); ?>" alt="Poster" class="poster">
+    <?php endif; ?>
+
+    <p class="descricao"><?php echo htmlspecialchars($serie['descricao']); ?></p>
+    <p class="lancamento"><strong>Data de Lançamento:</strong> <?php echo date("d/m/Y", strtotime($serie['data_lancamento'])); ?></p>
 </div>
 
-<div class="avaliacoes-lista">
-    <h3>Avaliações dos usuários:</h3>
-    <?php if ($avaliacoes): ?>
-        <?php foreach ($avaliacoes as $avaliacao): ?>
-            <div class="avaliacao">
-                <strong><?= htmlspecialchars($avaliacao['nome']) ?> (<?= number_format($avaliacao['avaliacao'], 1) ?>★):</strong>
-                <p><?= htmlspecialchars($avaliacao['comentario']) ?></p>
+<div class="av">
+    <div class="av2">
+        <form action="" method="POST">
+            <label for="comentario">Compartilhe conosco seu comentário:</label>
+            <textarea name="comentario" id="comentario" required></textarea>
+
+            <label for="nota">Essa obra merece qual avaliação?</label>
+            <div class="estrelas">
+                <input type="radio" name="nota" id="estrela5" value="5">
+                <label for="estrela5">★ <span>5</span></label>
+
+                <input type="radio" name="nota" id="estrela4" value="4">
+                <label for="estrela4">★ <span>4</span></label>
+
+                <input type="radio" name="nota" id="estrela3" value="3">
+                <label for="estrela3">★ <span>3</span></label>
+
+                <input type="radio" name="nota" id="estrela2" value="2">
+                <label for="estrela2">★ <span>2</span></label>
+
+                <input type="radio" name="nota" id="estrela1" value="1">
+                <label for="estrela1">★ <span>1</span></label>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p class="sem-avaliacoes">Nenhuma avaliação registrada ainda.</p>
-    <?php endif; ?>
+
+            <button type="submit">Enviar Avaliação</button>
+
+            <!-- Mensagem após envio -->
+            <?php if (!empty($mensagem)) echo $mensagem; ?>
+        </form>
+
+        <div class="avaliacoes-lista">
+            <h3>Avaliações dos usuários:</h3>
+            <?php if ($avaliacoes): ?>
+                <?php foreach ($avaliacoes as $avaliacao): ?>
+                    <div class="avaliacao">
+                        <strong><?= htmlspecialchars($avaliacao['nome']) ?> (<?= number_format($avaliacao['avaliacao'], 1) ?>★):</strong>
+                        <p><?= htmlspecialchars($avaliacao['comentario']) ?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="sem-avaliacoes">Nenhuma avaliação registrada ainda.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
 
 <footer>

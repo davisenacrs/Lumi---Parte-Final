@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Dez-2024 às 01:22
--- Versão do servidor: 10.4.20-MariaDB
--- versão do PHP: 8.0.8
+-- Tempo de geração: 14/04/2025 às 23:07
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `avaliacoes`
+-- Estrutura para tabela `avaliacoes`
 --
 
 CREATE TABLE `avaliacoes` (
@@ -34,44 +34,30 @@ CREATE TABLE `avaliacoes` (
   `usuario_id` int(11) NOT NULL,
   `avaliacao` int(11) NOT NULL CHECK (`avaliacao` >= 1 and `avaliacao` <= 5),
   `comentario` text DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `avaliacoes`
+-- Despejando dados para a tabela `avaliacoes`
 --
 
 INSERT INTO `avaliacoes` (`id`, `filmes_id`, `series_id`, `usuario_id`, `avaliacao`, `comentario`) VALUES
-(1, NULL, 1, 2, 1, 'asd'),
-(3, 2, NULL, 2, 1, 'asd'),
-(11, NULL, 2, 2, 3, 'dada'),
-(12, NULL, 3, 2, 3, 'claudio'),
-(13, NULL, 2, 2, 3, 'fabao');
+(16, 18, NULL, 2, 5, 'eu adorei a obra'),
+(17, NULL, 6, 2, 2, 'eu curti a seire'),
+(18, 7, NULL, 2, 3, 'ja vi o filme 3 vezes'),
+(19, 6, NULL, 2, 4, 'gostei do fuilme'),
+(20, 20, NULL, 2, 1, 'jula caro'),
+(21, 4, NULL, 2, 3, 'b'),
+(22, NULL, 14, 2, 4, 'ss'),
+(23, NULL, 3, 2, 3, 'sa'),
+(24, 2, NULL, 2, 5, 'assa'),
+(25, NULL, 3, 2, 5, 'safasdsdsa'),
+(26, NULL, 3, 2, 5, 'safasdsdsa'),
+(27, NULL, 3, 2, 4, 'dFE');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `contato`
---
-
-CREATE TABLE `contato` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(25) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `mensagem` varchar(250) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `contato`
---
-
-INSERT INTO `contato` (`id`, `nome`, `email`, `mensagem`) VALUES
-(1, 'Junior', 'jrsantos@hotmail.com', 'Eu acho o site incrível!\r\n'),
-(2, 'claudio', 'claudio@gmail.com', 'eu gostei do seu site');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `filmes`
+-- Estrutura para tabela `filmes`
 --
 
 CREATE TABLE `filmes` (
@@ -80,10 +66,10 @@ CREATE TABLE `filmes` (
   `descricao` text DEFAULT NULL,
   `data_lancamento` date DEFAULT NULL,
   `poster` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Extraindo dados da tabela `filmes`
+-- Despejando dados para a tabela `filmes`
 --
 
 INSERT INTO `filmes` (`id`, `titulo`, `descricao`, `data_lancamento`, `poster`) VALUES
@@ -111,7 +97,7 @@ INSERT INTO `filmes` (`id`, `titulo`, `descricao`, `data_lancamento`, `poster`) 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `series`
+-- Estrutura para tabela `series`
 --
 
 CREATE TABLE `series` (
@@ -120,10 +106,10 @@ CREATE TABLE `series` (
   `descricao` text DEFAULT NULL,
   `data_lancamento` date DEFAULT NULL,
   `poster` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Extraindo dados da tabela `series`
+-- Despejando dados para a tabela `series`
 --
 
 INSERT INTO `series` (`id`, `titulo`, `descricao`, `data_lancamento`, `poster`) VALUES
@@ -151,31 +137,33 @@ INSERT INTO `series` (`id`, `titulo`, `descricao`, `data_lancamento`, `poster`) 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `senha` varchar(255) NOT NULL,
+  `tipo` enum('usuario','admin') DEFAULT 'usuario'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`) VALUES
-(2, 'Davi', 'daflores190@gmail.com', '$2y$10$D0gNh3eVNL7gArkrdBMCTe9KiYFN7ovQ202GCQcXdAHP.6DMvnajW'),
-(4, 'Junior ', 'jrsantos@hotmail.com', '$2y$10$ilgZgFQ7rjAMY5KVDCl3TeZGgYsozevLXCrhaWZLEhtXcgaWexDe6'),
-(6, 'fabio', 'fabio@gmail.com', '$2y$10$KLAsVhqgph3AttWLvg/QcOh0I/QX0nXeWqw8PZnntpvGn9aS9QB7C');
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo`) VALUES
+(2, 'Davi', 'daflores190@gmail.com', '$2y$10$D0gNh3eVNL7gArkrdBMCTe9KiYFN7ovQ202GCQcXdAHP.6DMvnajW', 'usuario'),
+(4, 'Junior ', 'jrsantos@hotmail.com', '$2y$10$ilgZgFQ7rjAMY5KVDCl3TeZGgYsozevLXCrhaWZLEhtXcgaWexDe6', 'usuario'),
+(6, 'fabio', 'fabio@gmail.com', '$2y$10$KLAsVhqgph3AttWLvg/QcOh0I/QX0nXeWqw8PZnntpvGn9aS9QB7C', 'usuario'),
+(7, 'Admin', 'admin@lumi.com', '$2y$10$MqP5Ub2nrUue5aoo0I6aieiF.bcHxespW1EADPLiMt41AoANXtH3.', 'admin');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `avaliacoes`
+-- Índices de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`id`),
@@ -184,45 +172,33 @@ ALTER TABLE `avaliacoes`
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
--- Índices para tabela `contato`
---
-ALTER TABLE `contato`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `filmes`
+-- Índices de tabela `filmes`
 --
 ALTER TABLE `filmes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `series`
+-- Índices de tabela `series`
 --
 ALTER TABLE `series`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `contato`
---
-ALTER TABLE `contato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `filmes`
@@ -240,14 +216,14 @@ ALTER TABLE `series`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `avaliacoes`
+-- Restrições para tabelas `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD CONSTRAINT `avaliacoes_ibfk_1` FOREIGN KEY (`filmes_id`) REFERENCES `filmes` (`id`) ON DELETE CASCADE,

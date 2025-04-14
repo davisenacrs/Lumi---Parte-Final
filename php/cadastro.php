@@ -7,18 +7,24 @@ $mensagem = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-
-    if ($stmt->execute([$nome, $email, $senha])) {
-        $mensagem = '<div class="accuracy-message">Usuário cadastrado com sucesso!</div>';
+    
+    if (strtolower($email) === 'admin@lumi.com') {
+        $mensagem = '<div class="error-message">Este e-mail é reservado e não pode ser utilizado.</div>';
     } else {
-        $mensagem = '<div class="error-message">Erro ao cadastrar o usuário. Tente novamente.</div>';
+        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+
+        if ($stmt->execute([$nome, $email, $senha])) {
+            $mensagem = '<div class="accuracy-message">Usuário cadastrado com sucesso!</div>';
+        } else {
+            $mensagem = '<div class="error-message">Erro ao cadastrar o usuário. Tente novamente.</div>';
+        }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">

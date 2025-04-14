@@ -38,8 +38,12 @@ $apiKey = 'AIzaSyAdr9XVnU0PieuYzACnV7LFxsz_jaHiYHk'; // Substitua aqui
 $tituloBusca = urlencode($filme['titulo'] . " trailer oficial");
 
 $urlYoutube = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$tituloBusca&type=video&maxResults=1&key=$apiKey";
-$response = file_get_contents($urlYoutube);
-$data = json_decode($response, true);
+$response = @file_get_contents($urlYoutube);
+$data = [];
+
+if ($response !== false) {
+    $data = json_decode($response, true);
+}
 
 $videoId = null;
 if (!empty($data['items'])) {
@@ -83,18 +87,6 @@ $avaliacoes = $stmt_avaliacoes->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/avaliar.css">
     <link rel="icon" type="image/png" href="../img/logo.png">
-    <style>
-        .trailer-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .trailer-container iframe {
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 0 15px #1a2c3d;
-        }
-    </style>
 </head>
 <body>
 
@@ -116,18 +108,16 @@ $avaliacoes = $stmt_avaliacoes->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </header>
 
-<div class="img">
     <div class="avaliarfilmes">
         <h2><?php echo htmlspecialchars($filme['titulo']); ?></h2>
 
         <?php if ($media): ?>
             <div class="media-avaliacao">
-                <span>Média dos usuários:</span>
-                <strong><?php echo number_format($media, 1); ?> ★</strong>
+                <h3>Média dos usuários:  <?php echo number_format($media, 1); ?> ★</h3>
             </div>
         <?php else: ?>
             <div class="media-avaliacao">
-                <span>Este filme ainda não foi avaliado.</span>
+                <h3>Este filme ainda não foi avaliado.</h3>
             </div>
         <?php endif; ?>
 
@@ -143,47 +133,49 @@ $avaliacoes = $stmt_avaliacoes->fetchAll(PDO::FETCH_ASSOC);
         <p class="descricao"><?php echo htmlspecialchars($filme['descricao']); ?></p>
         <p class="lancamento"><strong>Data de Lançamento:</strong> <?php echo date("d/m/Y", strtotime($filme['data_lancamento'])); ?></p>
     </div>
+    
+    <div class="av">
+        <div class="av2">
+            <form action="" method="POST">
+                <label for="comentario">Compartilhe conosco seu comentário:</label>
+                <textarea name="comentario" id="comentario" required></textarea>
 
-    <form action="" method="POST">
-        <label for="comentario">Compartilhe conosco seu comentário:</label>
-        <textarea name="comentario" id="comentario" required></textarea>
+                <label for="nota">Essa obra merece qual avaliação?</label>
+                <div class="estrelas">
+                    <input type="radio" name="nota" id="estrela5" value="5">
+                    <label for="estrela5">★ <span>5</span></label>
 
-        <label for="nota">Essa obra merece qual avaliação?</label>
-        <div class="estrelas">
-            <input type="radio" name="nota" id="estrela5" value="5">
-            <label for="estrela5">★ <span>5</span></label>
+                    <input type="radio" name="nota" id="estrela4" value="4">
+                    <label for="estrela4">★ <span>4</span></label>
 
-            <input type="radio" name="nota" id="estrela4" value="4">
-            <label for="estrela4">★ <span>4</span></label>
+                    <input type="radio" name="nota" id="estrela3" value="3">
+                    <label for="estrela3">★ <span>3</span></label>
 
-            <input type="radio" name="nota" id="estrela3" value="3">
-            <label for="estrela3">★ <span>3</span></label>
+                    <input type="radio" name="nota" id="estrela2" value="2">
+                    <label for="estrela2">★ <span>2</span></label>
 
-            <input type="radio" name="nota" id="estrela2" value="2">
-            <label for="estrela2">★ <span>2</span></label>
+                    <input type="radio" name="nota" id="estrela1" value="1">
+                    <label for="estrela1">★ <span>1</span></label>
+                </div>
 
-            <input type="radio" name="nota" id="estrela1" value="1">
-            <label for="estrela1">★ <span>1</span></label>
-        </div>
+                <button type="submit">Enviar Avaliação</button>
+            </form>
 
-        <button type="submit">Enviar Avaliação</button>
-    </form>
-</div>
-
-<div class="avaliacoes-lista">
-    <h3>Avaliações dos usuários:</h3>
-    <?php if ($avaliacoes): ?>
-        <?php foreach ($avaliacoes as $avaliacao): ?>
-            <div class="avaliacao">
-                <strong><?= htmlspecialchars($avaliacao['nome']) ?> (<?= number_format($avaliacao['avaliacao'], 1) ?>★):</strong>
-                <p><?= htmlspecialchars($avaliacao['comentario']) ?></p>
+            <div class="avaliacoes-lista">
+                <h3>Avaliações dos usuários:</h3>
+                <?php if ($avaliacoes): ?>
+                    <?php foreach ($avaliacoes as $avaliacao): ?>
+                        <div class="avaliacao">
+                            <strong><?= htmlspecialchars($avaliacao['nome']) ?> (<?= number_format($avaliacao['avaliacao'], 1) ?>★):</strong>
+                            <p><?= htmlspecialchars($avaliacao['comentario']) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="sem-avaliacoes">Nenhuma avaliação registrada ainda.</p>
+                <?php endif; ?>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p class="sem-avaliacoes">Nenhuma avaliação registrada ainda.</p>
-    <?php endif; ?>
-</div>
-
+        </div>
+    </div>
 <footer>
     <div class="direitos">
         <p>Lumi © 2024 - Todos os direitos reservados.</p>
